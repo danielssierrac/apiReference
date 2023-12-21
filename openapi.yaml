@@ -9,6 +9,8 @@ tags:
 paths:
   /hotels/bookings:
     post:
+      tags:
+       - pet
       summary: This service allows to create a new hotel booking
       description: Creates a booking for the specified hotel and dates.
       consumes:
