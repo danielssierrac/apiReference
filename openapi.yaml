@@ -91,5 +91,3 @@ paths:
                     description: Unique identifier of the booking that the service created
         '400':
              description: The system could not process the request due to missing or erroneous data
-               
-  
