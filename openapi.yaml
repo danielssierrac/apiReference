@@ -77,6 +77,7 @@ paths:
                     type: string
                     description: Desired bed type (e.g., "king", "queen", "twin")
                     example: "queen"
+
       responses:
         '201':
           description: Booking created successfully
@@ -89,6 +90,6 @@ paths:
                     type: string
                     description: Unique identifier of the booking that the service created
         '400':
-           description: The system could not process the request due to missing or erroneous data
+             description: The system could not process the request due to missing or erroneous data
                
   
