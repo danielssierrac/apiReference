@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: Hotel Booking API
+  description: API for booking hotel reservations
+  version: 1.0.0
+paths:
+  /hotels/bookings:
+    post:
+      summary: Create a new hotel booking
+      description: Creates a booking for the specified hotel and dates.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Booking details
+          schema:
+            type: object
+            required:
+              - hotelId
+              - checkInDate
+              - checkOutDate
+              - guests
+              - preferences
+            properties:
+              hotelId:
+                type: string
+                description: Unique identifier of the hotel
+                example: "hilton-ny-1234"
+              checkInDate:
+                type: string
+                format: date
+                description: Check-in date in YYYY-MM-DD format
+                example: "2023-12-25"
+              checkOutDate:
+                type: string
+                format: date
+                description: Check-out date in YYYY-MM-DD format
+                example: "2024-01-01"
+              guests:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - name
+                    - email
+                    - phone
+                  properties:
+                    name:
+                      type: string
+                      description: Guest's full name
+                      example: "John Doe"
+                    email:
+                      type: string
+                      format: email
+                      description: Guest's email address
+                      example: "johndoe@example.com"
+                    phone:
+                      type: string
+                      description: Guest's phone number
+                      example: "+1234567890"
+              preferences:
+                type: object
+                properties:
+                  smoking:
+                    type: boolean
+                    description: Preference for smoking or non-smoking room
+                    example: false
+                  bedType:
+                    type: string
+                    description: Desired bed type (e.g., "king", "queen", "twin")
+                    example: "queen"
+      responses:
+        201:
+          description: Booking created successfully
+          schema:
+            type: object
+            properties:
+              bookingId:
+                type: string
+                description: Unique identifier of the created booking
+        400:
+          description: The system could not process the request due to missing or erroneous data
+               
+  
