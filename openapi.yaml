@@ -78,7 +78,7 @@ paths:
                     description: Desired bed type (e.g., "king", "queen", "twin")
                     example: "queen"
       responses:
-        201:
+        '201':
           description: Booking created successfully
           schema:
             type: object
@@ -86,7 +86,7 @@ paths:
               bookingId:
                 type: string
                 description: Unique identifier of the created booking
-        400:
+         '400':
           description: The system could not process the request due to missing or erroneous data
                
   
