@@ -86,7 +86,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  bookingId:
+                 bookingId:
                     type: string
                     description: Unique identifier of the booking that the service created
         '400':
