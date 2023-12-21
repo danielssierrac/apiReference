@@ -1,12 +1,15 @@
 openapi: 3.0.3
 info:
   title: Hotel Booking API
-  description: API for booking hotel reservations
+  description: This API allows to book and edit hotel reservations.
   version: 1.0.0
+tags:
+ - name: New booking
+   description: Allows to create a new booking with the guest's info. 
 paths:
   /hotels/bookings:
     post:
-      summary: Create a new hotel booking
+      summary: This service allows to create a new hotel booking
       description: Creates a booking for the specified hotel and dates.
       consumes:
         - application/json
@@ -28,17 +31,17 @@ paths:
               hotelId:
                 type: string
                 description: Unique identifier of the hotel
-                example: "hilton-ny-1234"
+                example: "hilton001"
               checkInDate:
                 type: string
                 format: date
                 description: Check-in date in YYYY-MM-DD format
-                example: "2023-12-25"
+                example: "2023-12-28"
               checkOutDate:
                 type: string
                 format: date
                 description: Check-out date in YYYY-MM-DD format
-                example: "2024-01-01"
+                example: "2024-01-05"
               guests:
                 type: array
                 items:
@@ -56,11 +59,11 @@ paths:
                       type: string
                       format: email
                       description: Guest's email address
-                      example: "johndoe@example.com"
+                      example: "johndoe@gmail.com"
                     phone:
                       type: string
                       description: Guest's phone number
-                      example: "+1234567890"
+                      example: "+57301234567890"
               preferences:
                 type: object
                 properties:
