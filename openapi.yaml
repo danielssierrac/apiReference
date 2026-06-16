@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Hotel Booking API
-  description: API para la gestión de reservas hoteleras. Documentación generada automáticamente desde especificaciones OpenAPI.
+  description: API for managing hotel reservations. Documentation generated automatically from OpenAPI specifications.
   version: 1.0.0
 servers:
   - url: https://api.hotel-service.com/v1
@@ -11,17 +11,17 @@ paths:
   /hotels/bookings:
     post:
       summary: Create a new hotel booking
-      description: Permite crear una nueva reserva de hotel enviando los datos del huésped y las preferencias.
+      description: Allows users to create a new hotel reservation by providing guest details and room preferences.
       operationId: createBooking
-      parameters:
-      - in: header
-        name: X-API-Key
-        required: true
-        description: Llave de autenticación para acceder al servicio
-        schema:
-          type: string
       tags:
         - Bookings
+      parameters:
+        - in: header
+          name: X-API-Key
+          required: true
+          description: Authentication key required to access the service.
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -30,7 +30,7 @@ paths:
               $ref: '#/components/schemas/BookingRequest'
       responses:
         '201':
-          description: Booking created successfully
+          description: Booking created successfully.
           content:
             application/json:
               schema:
@@ -40,9 +40,9 @@ paths:
                     type: string
                     example: "BK-998877"
         '400':
-          description: Bad Request - Error en los datos enviados
+          description: Bad Request - Missing or invalid data.
         '500':
-          description: Internal Server Error
+          description: Internal Server Error - Unexpected error on the server.
 
 components:
   schemas:
@@ -100,5 +100,3 @@ components:
           type: string
           enum: [king, queen, twin]
           example: "queen"
-        email: { type: string, format: email }
-        phone: { type: string }
