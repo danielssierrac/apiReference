@@ -1,11 +1,20 @@
 openapi: 3.0.3
 info:
   title: Hotel Booking API
+  description: API para la gestión de reservas hoteleras. Documentación generada automáticamente desde especificaciones OpenAPI.
   version: 1.0.0
+servers:
+  - url: https://api.hotel-service.com/v1
+    description: Production server
+
 paths:
   /hotels/bookings:
     post:
       summary: Create a new hotel booking
+      description: Permite crear una nueva reserva de hotel enviando los datos del huésped y las preferencias.
+      operationId: createBooking
+      tags:
+        - Bookings
       requestBody:
         required: true
         content:
@@ -22,26 +31,67 @@ paths:
                 properties:
                   bookingId:
                     type: string
+                    example: "BK-998877"
         '400':
-          description: Bad Request - Missing or erroneous data
+          description: Bad Request - Error en los datos enviados
+        '500':
+          description: Internal Server Error
 
 components:
   schemas:
     BookingRequest:
       type: object
-      required: [hotelId, checkInDate, checkOutDate, guests]
+      required:
+        - hotelId
+        - checkInDate
+        - checkOutDate
+        - guests
       properties:
-        hotelId: { type: string, example: "hilton001" }
-        checkInDate: { type: string, format: date }
-        checkOutDate: { type: string, format: date }
+        hotelId:
+          type: string
+          example: "hilton001"
+        checkInDate:
+          type: string
+          format: date
+          example: "2026-12-28"
+        checkOutDate:
+          type: string
+          format: date
+          example: "2027-01-05"
         guests:
           type: array
           items:
             $ref: '#/components/schemas/Guest'
+        preferences:
+          $ref: '#/components/schemas/Preferences'
+    
     Guest:
       type: object
-      required: [name, email, phone]
+      required:
+        - name
+        - email
+        - phone
       properties:
-        name: { type: string }
+        name:
+          type: string
+          example: "John Doe"
+        email:
+          type: string
+          format: email
+          example: "johndoe@gmail.com"
+        phone:
+          type: string
+          example: "+573012345678"
+          
+    Preferences:
+      type: object
+      properties:
+        smoking:
+          type: boolean
+          example: false
+        bedType:
+          type: string
+          enum: [king, queen, twin]
+          example: "queen"
         email: { type: string, format: email }
         phone: { type: string }
