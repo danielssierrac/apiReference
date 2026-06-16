@@ -13,6 +13,13 @@ paths:
       summary: Create a new hotel booking
       description: Permite crear una nueva reserva de hotel enviando los datos del huésped y las preferencias.
       operationId: createBooking
+      parameters:
+      - in: header
+        name: X-API-Key
+        required: true
+        description: Llave de autenticación para acceder al servicio
+        schema:
+          type: string
       tags:
         - Bookings
       requestBody:
